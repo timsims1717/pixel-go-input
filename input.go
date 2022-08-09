@@ -41,6 +41,7 @@ type Input struct {
 	Deadzone float64
 	Mode     Mode
 	joyConn  bool
+	OptFlags map[string]bool
 }
 
 func (i *Input) Update(win *pixelgl.Window, mat pixel.Matrix) {
