@@ -1,6 +1,6 @@
 package pxginput
 
-import "github.com/faiface/pixel/pixelgl"
+import "github.com/gopxl/pixel/pixelgl"
 
 var (
 	consumeGamepad map[pixelgl.GamepadButton]bool

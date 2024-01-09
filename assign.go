@@ -1,6 +1,6 @@
 package pxginput
 
-import "github.com/faiface/pixel/pixelgl"
+import "github.com/gopxl/pixel/pixelgl"
 
 // CheckAssign checks all inputs and assigns any new inputs to the provided
 // Input. Returns true if an assignment was made.

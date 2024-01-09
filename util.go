@@ -1,6 +1,6 @@
 package pxginput
 
-import "github.com/faiface/pixel/pixelgl"
+import "github.com/gopxl/pixel/pixelgl"
 
 // NextGamepad returns the next integer representation of a valid pixelgl.Joystick.
 // -1 is returned if none is found and pixelgl.JoystickLast is reached.
