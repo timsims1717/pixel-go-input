@@ -42,11 +42,13 @@ type Input struct {
 	Mode     Mode
 	joyConn  bool
 	OptFlags map[string]bool
+	Typed    string
 }
 
 func (i *Input) Update(win *pixelgl.Window, mat pixel.Matrix) {
 	if win.Focused() {
 		updateConsume(win, i.Joystick)
+		i.Typed = win.Typed()
 		i.Cursor = win.MousePosition()
 		i.World = mat.Unproject(win.MousePosition())
 		i.ScrollV = win.MouseScroll().Y
