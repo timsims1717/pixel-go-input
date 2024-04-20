@@ -227,16 +227,19 @@ func (bs *ButtonSet) Consume() {
 	}
 }
 
-func (bs *ButtonSet) AddKey(key pixelgl.Button) {
+func (bs *ButtonSet) AddKey(key pixelgl.Button) *ButtonSet {
 	bs.Keys = append(bs.Keys, key)
+	return bs
 }
 
-func (bs *ButtonSet) AddAxis(axis pixelgl.GamepadAxis) {
+func (bs *ButtonSet) AddAxis(axis pixelgl.GamepadAxis) *ButtonSet {
 	bs.Axis = axis
+	return bs
 }
 
-func (bs *ButtonSet) AddButton(btn pixelgl.GamepadButton) {
+func (bs *ButtonSet) AddButton(btn pixelgl.GamepadButton) *ButtonSet {
 	bs.Buttons = append(bs.Buttons, btn)
+	return bs
 }
 
 type AxisSet struct {
