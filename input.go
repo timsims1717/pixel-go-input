@@ -227,6 +227,18 @@ func (bs *ButtonSet) Consume() {
 	}
 }
 
+func (bs *ButtonSet) AddKey(key pixelgl.Button) {
+	bs.Keys = append(bs.Keys, key)
+}
+
+func (bs *ButtonSet) AddAxis(axis pixelgl.GamepadAxis) {
+	bs.Axis = axis
+}
+
+func (bs *ButtonSet) AddButton(btn pixelgl.GamepadButton) {
+	bs.Buttons = append(bs.Buttons, btn)
+}
+
 type AxisSet struct {
 	F float64
 	R float64
