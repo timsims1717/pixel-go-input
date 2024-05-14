@@ -408,6 +408,34 @@ func GetAllJustPressedKey(win *pixelgl.Window) []pixelgl.Button {
 	return result
 }
 
+func GetAllGamepads(win *pixelgl.Window) []pixelgl.Joystick {
+	var result []pixelgl.Joystick
+	joysticks := []pixelgl.Joystick{
+		pixelgl.Joystick1,
+		pixelgl.Joystick2,
+		pixelgl.Joystick3,
+		pixelgl.Joystick4,
+		pixelgl.Joystick5,
+		pixelgl.Joystick6,
+		pixelgl.Joystick7,
+		pixelgl.Joystick8,
+		pixelgl.Joystick9,
+		pixelgl.Joystick10,
+		pixelgl.Joystick11,
+		pixelgl.Joystick12,
+		pixelgl.Joystick13,
+		pixelgl.Joystick14,
+		pixelgl.Joystick15,
+		pixelgl.Joystick16,
+	}
+	for _, js := range joysticks {
+		if win.JoystickPresent(js) {
+			joysticks = append(joysticks, js)
+		}
+	}
+	return result
+}
+
 func GetAllJustPressedGamepad(win *pixelgl.Window, js pixelgl.Joystick) []pixelgl.GamepadButton {
 	var result []pixelgl.GamepadButton
 	if win.JoystickPresent(js) {
@@ -457,70 +485,70 @@ func GetAllJustPressedGamepad(win *pixelgl.Window, js pixelgl.Joystick) []pixelg
 	return result
 }
 
-type AxisReturn struct {
+type AxisResult struct {
 	Axis pixelgl.GamepadAxis
 	Dir  float64
 }
 
-func GetAllAxisGamepad(win *pixelgl.Window, in *Input) []AxisReturn {
-	var result []AxisReturn
+func GetAllAxisGamepad(win *pixelgl.Window, in *Input) []AxisResult {
+	var result []AxisResult
 	if win.JoystickPresent(in.Joystick) {
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisLeftX) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisLeftX,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisLeftY) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisLeftY,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisRightX) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisRightX,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisRightY) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisRightY,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisLeftTrigger) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisLeftTrigger,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisRightTrigger) > in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisRightTrigger,
 				Dir:  1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisLeftX) < -in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisLeftX,
 				Dir:  -1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisLeftY) < -in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisLeftY,
 				Dir:  -1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisRightX) < -in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisRightX,
 				Dir:  -1.,
 			})
 		}
 		if win.JoystickAxis(in.Joystick, pixelgl.AxisRightY) < -in.Deadzone {
-			result = append(result, AxisReturn{
+			result = append(result, AxisResult{
 				Axis: pixelgl.AxisRightY,
 				Dir:  -1.,
 			})
