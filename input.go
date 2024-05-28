@@ -131,7 +131,11 @@ func (i *Input) Update(win *pixelgl.Window, mat pixel.Matrix) {
 	}
 }
 
-func New(n pixelgl.Button, g pixelgl.GamepadButton) *ButtonSet {
+func New() *ButtonSet {
+	return &ButtonSet{}
+}
+
+func NewWithButtons(n pixelgl.Button, g pixelgl.GamepadButton) *ButtonSet {
 	return &ButtonSet{
 		Keys:    []pixelgl.Button{n},
 		Buttons: []pixelgl.GamepadButton{g},
