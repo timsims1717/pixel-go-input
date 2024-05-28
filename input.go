@@ -236,8 +236,13 @@ func (bs *ButtonSet) AddKey(key pixelgl.Button) *ButtonSet {
 	return bs
 }
 
-func (bs *ButtonSet) AddAxis(axis pixelgl.GamepadAxis) *ButtonSet {
+func (bs *ButtonSet) AddAxis(axis pixelgl.GamepadAxis, plus bool) *ButtonSet {
 	bs.Axis = axis
+	if plus {
+		bs.AxisV = 1
+	} else {
+		bs.AxisV = -1
+	}
 	return bs
 }
 
