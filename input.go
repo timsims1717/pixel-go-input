@@ -220,6 +220,13 @@ func (bs *ButtonSet) Repeated() bool {
 	return bs.Button.repeated
 }
 
+func (bs *ButtonSet) JustPressedOrRepeated() bool {
+	if bs == nil {
+		return false
+	}
+	return bs.Button.justPressed || bs.Button.repeated
+}
+
 func (bs *ButtonSet) Consume() {
 	if bs == nil {
 		return
