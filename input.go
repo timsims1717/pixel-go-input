@@ -43,17 +43,18 @@ type Input struct {
 	joyConn  bool
 	OptFlags map[string]bool
 	Typed    string
+	Focused  bool
 }
 
 func (i *Input) Update(win *pixelgl.Window, mat pixel.Matrix) {
-	if win.Focused() {
-		updateConsume(win, i.Joystick)
+	updateConsume(win, i.Joystick)
+	i.Cursor = win.MousePosition()
+	i.World = mat.Unproject(win.MousePosition())
+	i.MouseMoved = !win.MousePreviousPosition().Eq(win.MousePosition())
+	if win.Focused() && i.Focused {
 		i.Typed = win.Typed()
-		i.Cursor = win.MousePosition()
-		i.World = mat.Unproject(win.MousePosition())
 		i.ScrollV = win.MouseScroll().Y
 		i.ScrollH = win.MouseScroll().X
-		i.MouseMoved = !win.MousePreviousPosition().Eq(win.MousePosition())
 		i.joyConn = win.JoystickPresent(i.Joystick)
 
 		if i.joyConn && i.Mode != KeyboardMouse {
@@ -128,6 +129,10 @@ func (i *Input) Update(win *pixelgl.Window, mat pixel.Matrix) {
 			set.Button.repeated = repeated
 			set.LastMode = Mode(modePressed)
 		}
+	} else if win.Focused() && !i.Focused {
+		i.Focused = true
+	} else {
+		i.Focused = false
 	}
 }
 
